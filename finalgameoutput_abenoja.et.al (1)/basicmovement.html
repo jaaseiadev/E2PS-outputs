@@ -1,0 +1,369 @@
+<html>
+    <head > </head>
+    <script src="shapesLines.js"></script>
+	<script src="pisiks.js"></script>
+	
+    <body>
+        <canvas id="canvas1" width="1000x" height="1000px" style="border: 5px solid rgb(0, 0, 0); border-top: 5px solid yellow; border-left: 5px solid red; border-right: 5px solid blue; border-bottom: 5px solid green; background-image: url(file:///C:/Users/Teacher/Desktop/jaaseia%20gian%20r%20abenoja/canvas/kuan.png); background-position: center;"></canvas>
+        <script>
+		//Main Circle
+            var x = 500;
+            var y = 500;
+            var radius = 30;
+            var color = "white";
+			var direction = null;
+		//obstacle one
+			var x2 = 200;
+            var y2 = 200;
+            var radius2 = 80;
+            var color2 = "green";
+			var direction2 = "down";
+		
+		//obstacle two
+			var x3= 300;
+            var y3= 800;
+            var radius3= 160;
+            var color3= "black";
+			var directions = ["up","down","right","left"]
+			var direction1 = "down";
+			
+			
+		//obstacle three
+			var x4= 800;
+            var y4= 680;
+            var radius4= 20;
+            var color4= "red";
+			var direction3 = "up";
+			
+			var kanchaws = ["TRY AGAIN BISAYA KAMAN HAHAHAHA","TARUNGA OY","NALOKO KAMAN","HAHAHHAHA KAPILA NAMAN NI NIMONG TRY","I miss you","bayot","I love yoy","stan sb19","che utro dali"]
+		// win condition
+		function checkWinCondition() {
+		if (radius >= 900) {
+        alert("Victory!");
+		location.reload();
+		}
+		if (radius <= 0 ){
+			var kanchaw = Math.floor(Math.random() * 7);
+		alert(kanchaws[kanchaw]);
+		location.reload();
+		}
+    }
+
+
+		var changecolor;
+		var changecolor2;
+		var changecolor3;
+		//score
+		//drawing the circle
+            function draw(){
+                var canvas = document.getElementById("canvas1");
+                var cont = canvas.getContext("2d");
+                cont.clearRect(0,0,1000,1000);
+                circle("canvas1", x,y, radius, color);
+				circle("canvas1", x2,y2, radius2, color2);
+				circle("canvas1", x3,y3, radius3, color3);
+				circle("canvas1", x4,y4, radius4, color4);
+            }
+		//direction of the circles
+			//main character
+            function changeDirection(event){
+				if(event.key == "w"){
+					direction = "up";
+				}
+				if(event.key == "s"){
+					direction = "down";
+				}
+				if(event.key == "a"){
+					direction = "left";
+				}
+				if(event.key == "d"){
+					direction = "right";
+				}
+				if(event.key == "x"){
+					radius = radius - 50;
+
+				}
+				if(event.key == "c"){
+					radius = radius + 50;
+					
+				}
+              } 
+			
+			  function changeDirection1(event){
+				if(randomdirection == "up"){
+					direction1 = "up";
+				}
+				if(randomdirection == "down"){
+					direction1 = "down";
+				}
+				if(randomdirection == "left"){
+					direction1 = "left";
+				}
+				if(randomdirection == "right"){
+					direction1 = "right";
+				}
+              } 
+
+				function move1(){
+					//Big circle
+					if(direction1 == "right"){
+						x3 = x3 + 5;
+					}
+					if(direction1 == "up"){
+						y3 = y3 - 5;
+					}
+					if(direction1 == "left"){
+						x3 = x3 - 5;
+					}
+					if(direction1 == "down"){
+						y3 = y3 + 5;
+					}
+
+					//medium circle
+					if(direction2 == "right"){
+						x2 = x2 + 5;
+					}
+					if(direction2 == "up"){
+						y2 = y2 - 5;
+					}
+					if(direction2 == "left"){
+						x2 = x2 - 5;
+					}
+					if(direction2 == "down"){
+						y2 = y2 + 5;
+					}
+
+					//smol circle
+					if(direction3 == "right"){
+						x4 = x4 + 5;
+					}
+					if(direction3 == "up"){
+						y4 = y4 - 5;
+					}
+					if(direction3 == "left"){
+						x4 = x4 - 5;
+					}
+					if(direction3 == "down"){
+						y4 = y4 + 5;
+					}
+					//randdom movements
+					if((x3+radius3) > Math.floor(Math.random() * 1000)+ 1){
+						x3 = x3-10
+						var ran = Math.floor(Math.random() * 4);
+						direction1 = directions[ran];
+
+               		 }
+                if((x3-radius3) <  Math.floor(Math.random() * 1000)+ 1){
+                    x3 = x3+10
+					var ran = Math.floor(Math.random() * 4);
+						direction1 = directions[ran];
+
+                }
+                if((y3+radius3) >  Math.floor(Math.random() * 1000)+ 1){
+                    y3 = y3-10
+					var ran = Math.floor(Math.random() * 4);
+						direction1 = directions[ran];
+
+					
+                }
+                if((y3-radius3) <  Math.floor(Math.random() * 1000)+ 1){
+                    y3 = y3+10
+					var ran = Math.floor(Math.random() * 4);
+						direction1 = directions[ran];
+                }
+				//
+				if((x2+radius2) > 1000){
+                    x2 = x2-10
+					var ran = Math.floor(Math.random() * 4);
+						direction2 = directions[ran];
+                }
+                if((x2-radius2) < 0){
+                    x2 = x2+10
+					var ran = Math.floor(Math.random() * 4);
+						direction2 = directions[ran];
+                }
+                if((y2+radius2) > 1000){
+                    y2 = y2-10
+					var ran = Math.floor(Math.random() * 4);
+						direction2 = directions[ran];
+                    
+                }
+                if((y2-radius2) < 0){
+                    y2 = y2+10
+					var ran = Math.floor(Math.random() * 4);
+						direction2 = directions[ran];
+                }
+				//
+				if((x4+radius4) > 1000){
+                    x4 = x4-10
+					var ran = Math.floor(Math.random() * 4);
+						direction3 = directions[ran];
+                }
+                if((x4-radius) < 0){
+                    x4 = x4+10
+					var ran = Math.floor(Math.random() * 4);
+						direction3 = directions[ran];
+                }
+                if((y4+radius4) > 1000){
+                    y4 = y4-10
+					var ran = Math.floor(Math.random() * 4);
+						direction3 = directions[ran];
+                }
+                if((y4-radius4) < 0){
+                    y4 = y4+10
+					var ran = Math.floor(Math.random() * 4);
+						direction3 = directions[ran];
+                }
+				}
+		//the move function of the Circle
+				function move(){
+					if(direction == "right"){
+						x = x + 10;
+					}
+					if(direction == "up"){
+						y = y - 10;
+					}
+					if(direction == "left"){
+						x = x - 10;
+					}
+					if(direction == "down"){
+						y = y + 10;
+					}
+					
+				if((x3+radius3) > 1000){
+					randirection = Math.floor(Math.random() * 4)+ 1;
+                }
+                if((x3-radius3) < 0){
+                    
+					randirection = Math.floor(Math.random() * 4)+ 1;
+                }
+                if((y3+radius3) > 1000){
+                  
+                    randirection = Math.floor(Math.random() * 4)+ 1;
+                }
+                if((y3-radius3) < 0){
+                   
+					randirection = Math.floor(Math.random() * 4)+ 1;
+                }	
+													
+		//game mechanics and the collision
+				if(hasCollision(x,y,radius,x2,y2,radius2)){
+						if(radius < radius2){
+						radius = radius - 5
+						}
+						else{
+						radius = radius+ 5
+						}
+						y = y - 10;
+						changecolor = Math.floor(Math.random() * 5)+ 1;
+						x2= Math.floor(Math.random() * 950)+ 1;
+						y2= Math.floor(Math.random() * 950)+ 1;
+						if(changecolor == 1){
+							color2 = "red"
+						}
+						if(changecolor == 2){
+							color2 = "blue"
+						}
+						if(changecolor == 3){
+							color2 = "green"
+						}
+						if(changecolor == 4){
+							color2 = "yellow"
+						}
+						if(changecolor == 5){
+							color2 = "violet"
+						}
+					}
+					
+				if(hasCollision(x,y,radius,x3,y3,radius3)){
+						if(radius < radius3){
+						radius = radius - radius
+						}
+						else{
+						radius = radius+ 5
+						}
+						y = y - 10;
+						changecolor2 = Math.floor(Math.random() * 5)+ 1;
+						x3= Math.floor(Math.random() * 950)+ 1;
+						y3= Math.floor(Math.random() * 950)+ 1;
+						if(changecolor2 == 1){
+							color3 = "black"
+						}
+						if(changecolor2 == 2){
+							color3 = "black"
+						}
+						if(changecolor2 == 3){
+							color3 = "black"
+						}
+						if(changecolor2 == 4){
+							color3 = "black"
+						}
+						if(changecolor2 == 5){
+							color3 = "black"
+						}
+					}
+				
+				if(hasCollision(x,y,radius,x4,y4,radius4)){
+						if(radius < radius4){
+						radius = radius - 5
+						}
+						else{
+						radius = radius+ 4
+						}
+						y = y - 10;
+						changecolor3 = Math.floor(Math.random() * 5)+ 1;
+						x4= Math.floor(Math.random() * 950)+ 1;
+						y4= Math.floor(Math.random() * 950)+ 1;
+						if(changecolor3 == 1){
+							color4 = "red"
+						}
+						if(changecolor3 == 2){
+							color4 = "blue"
+						}
+						if(changecolor3 == 3){
+							color4 = "green"
+						}
+						if(changecolor3 == 4){
+							color4 = "yellow"
+						}
+						if(changecolor3 == 5){
+							color4 = "violet"
+						}
+					}
+				
+
+					
+				if((x+radius) > 1000){
+                    x = x-10
+                }
+                if((x-radius) < 0){
+                    x = x+10
+                }
+                if((y+radius) > 1000){
+                    y = y-10
+                    
+                }
+                if((y-radius) < 0){
+                    y = y+10
+                }
+            }
+
+            function animate(){
+				checkWinCondition();
+				move1();
+				move();
+                draw();
+                requestAnimationFrame(animate);
+            }
+            document.addEventListener("keydown", changeDirection);
+			document.addEventListener("keydown", changeDirection1);
+            animate();
+
+
+
+
+
+
+        </script>
+    </body>
+</html>
